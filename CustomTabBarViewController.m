@@ -291,10 +291,32 @@ static CustomTabBarViewController *_tabBarInstance;
     NSMutableArray *_controllersArray = [NSMutableArray array];
     
     for (NSDictionary *d in  __controllerArray) {
-        id _myViewController = [[NSClassFromString((NSString *)[d objectForKey:@"controllerName"]) alloc] init];
-        UINavigationController *topicNavigationController = [[[UINavigationController alloc] initWithRootViewController:_myViewController] autorelease];
-        topicNavigationController.navigationBar.hidden = YES;
-        [_controllersArray addObject:topicNavigationController];
+        
+        
+        
+        if ([[d objectForKey:@"controllerName"] hasSuffix:@"oard"]) {
+            BeeUIBoard * board = [[(BeeUIBoard *)[BeeRuntime allocByClassName:[d objectForKey:@"controllerName"]] init] autorelease];
+            if ( board )
+            {
+                UINavigationController *topicNavigationController = [[[UINavigationController alloc] initWithRootViewController:board] autorelease];
+                topicNavigationController.navigationBar.hidden = YES;
+                [_controllersArray addObject:topicNavigationController];
+            }
+            
+            [_controllersArray addObject:board];
+            
+            
+            
+        }else{
+            id _myViewController = [[NSClassFromString((NSString *)[d objectForKey:@"controllerName"]) alloc] init];
+            UINavigationController *topicNavigationController = [[[UINavigationController alloc] initWithRootViewController:_myViewController] autorelease];
+            topicNavigationController.navigationBar.hidden = YES;
+            [_controllersArray addObject:topicNavigationController];
+        }
+        
+       
+        
+                
     }
     
     __controllerArray = _controllersArray;
