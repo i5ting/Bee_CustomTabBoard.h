@@ -1,41 +1,27 @@
 //
-//  No320HeighlightTabViewController.m
-//  SimpleEKDemo
+//	 ______    ______    ______
+//	/\  __ \  /\  ___\  /\  ___\
+//	\ \  __<  \ \  __\_ \ \  __\_
+//	 \ \_____\ \ \_____\ \ \_____\
+//	  \/_____/  \/_____/  \/_____/
 //
-//  Created by sang on 5/7/13.
+//	Powered by BeeFramework
 //
+//
+//  no320_bee_tab_board.h
+//  git;
+//
+//  Created by sang on 5/8/13.
+//    Copyright (c) 2013 alfred sang. All rights reserved.
 //
 
-#import "No320HeighlightTabViewController.h"
+#import "Bee_CustomTabBoard.h"
 
-@interface No320HeighlightTabViewController ()
+@interface BeeCustomTabBoard ()
 
 @end
 
-@implementation No320HeighlightTabViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-//    [super set_custom_tab_view_delegate:self];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+@implementation BeeCustomTabBoard
 
 
 #pragma mark -
@@ -51,7 +37,7 @@
 
 
 -(void)log:(NSString *)str{
-    NSLog(@"%@:%@",@"No320HeighlightTabViewController",str);
+    NSLog(@"%@:%@",@"BeeCustomTabBoard",str);
 }
 
 
@@ -74,7 +60,5 @@
     int _width = 320/[self.__controllerArray count];
     return CGRectMake(_width*(i - 1)-4, 0, _width+6, 46);
 }
-
-
 
 @end

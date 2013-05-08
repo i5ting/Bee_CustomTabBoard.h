@@ -1,20 +1,34 @@
 //
-//  Bee_TabbarItemTmpl.m
-//  SimpleEKDemo
+//	 ______    ______    ______
+//	/\  __ \  /\  ___\  /\  ___\
+//	\ \  __<  \ \  __\_ \ \  __\_
+//	 \ \_____\ \ \_____\ \ \_____\
+//	  \/_____/  \/_____/  \/_____/
 //
-//  Created by sang alfred on 5/5/13.
+//	Powered by BeeFramework
 //
+//
+//  no320_bee_tab_board.h
+//  git;
+//
+//  Created by sang on 5/8/13.
+//    Copyright (c) 2013 alfred sang. All rights reserved.
 //
 
-#import "Bee_TabbarItemTmpl.h"
+#import "Bee_TabbarItem.h"
+ 
 
-@implementation Bee_TabbarItemTmpl
+@implementation Bee_TabbarItem
+
+DEF_SIGNAL(TABBAR_ITEM_CLICK)
+
+
 
 #define CUSTOM_TABBAR_ORIGIN_INSETS UIEdgeInsetsMake(1.0,3.0,3.0,3.0)
 
 @synthesize viewframe,bundleName,configArray;
 
- 
+
 @synthesize indicator0;
 @synthesize indicator1;
 @synthesize indicator2;
@@ -36,7 +50,7 @@
     self = [super init];
     if (self) {
         
-  
+        
     }
     return self;
 }
@@ -50,14 +64,10 @@
     if (__count==0) {
         return;
     }
-    int _width = 320/[self.configArray count];
-    
-    
-    int i = 1;
     
     highlightView = [[UIImageView alloc] init];
-    //callback 
-//    highlightView.frame = CGRectMake(0, 0, 320/__count, 44);
+    //callback
+    //    highlightView.frame = CGRectMake(0, 0, 320/__count, 44);
     if ([delegate respondsToSelector:@selector(set_init_heigh_light_view_frame)]) {
         highlightView.frame = [delegate set_init_heigh_light_view_frame];
     }
@@ -66,27 +76,24 @@
     
     [self addSubview:highlightView];
     
+    int i = 1;
     for (NSDictionary *d in self.configArray) {
         NSString *defaultImg = [NSString stringWithFormat:@"%@/%@",self.bundleName,(NSString *)[d objectForKey:@"default"]];
         NSString *selectedImg = [NSString stringWithFormat:@"%@/%@",self.bundleName,(NSString *)[d objectForKey:@"selected"]];
-        
-        UIButton  *_newsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        BeeUIButton  *_newsBtn = [BeeUIButton buttonWithType:UIButtonTypeCustom];
         _newsBtn.tag = 10357+i;
         //callback
-//        _newsBtn.frame = CGRectMake(_width*(i - 1)-4, 0, _width+6, 46);
-        
+        //        _newsBtn.frame = CGRectMake(_width*(i - 1)-4, 0, _width+6, 46);
         if ([delegate respondsToSelector:@selector(set_init_image_button_view_frame_with_index:)]) {
             _newsBtn.frame = [delegate set_init_image_button_view_frame_with_index:i];
         }
         
-        [_newsBtn setImage:[UIImage imageNamed:defaultImg] forState:UIControlStateNormal];
-        [_newsBtn setImage:[UIImage imageNamed:selectedImg] forState:UIControlStateSelected];
+        _newsBtn.stateNormal.image = [UIImage imageNamed:defaultImg];
+        _newsBtn.stateSelected.image = [UIImage imageNamed:selectedImg];
         [_newsBtn setOpaque:NO];
         _newsBtn.contentEdgeInsets = originInsets;
-        
         i++;
-        
-        [_newsBtn addTarget:self action:@selector(tapOnBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [_newsBtn addSignal:Bee_TabbarItem.TABBAR_ITEM_CLICK forControlEvents:UIControlEventTouchUpInside object:[NSNumber numberWithInt:i]];
         
         [self addSubview:_newsBtn];
         
@@ -102,12 +109,12 @@
         if (_cur_btn == nil) {
             return;
         }
+        
         if (i == index) {
             _cur_btn.selected = YES;
-//            [_cur_btn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@/%@",bundleName,@"tab_light.png"] ] forState:UIControlStateSelected];
         }else{
             _cur_btn.selected = NO;
-        }   
+        }
     }
 }
 
@@ -129,16 +136,9 @@
     [UIView beginAnimations:nil context:nil];
     [UIView animateWithDuration:0.2 animations:^{
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        
-        //callback
-//        CGRect f = self.highlightView.frame;
-//        f.origin.x = index * self.highlightView.frame.size.width-1;
-//        self.highlightView.frame = f;
-        
         if ([delegate respondsToSelector:@selector(set_after_animate_light_view_frame_with_prev_frame:and_index:)]) {
             self.highlightView.frame = [delegate set_after_animate_light_view_frame_with_prev_frame:self.highlightView.frame and_index:index];
         }
-
         
     }completion: ^(BOOL finished){
         [self selectTabAtCompletion:index];
