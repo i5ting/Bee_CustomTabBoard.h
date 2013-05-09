@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui>
+
+	<layout id="PullLoader">
+		<container orientation="horizonal" w="100%" h="wrap_content">
+			<view class="BeeUIImageView" id="logo" style="logo" w="65" h="65" position="absolute" y="-65" float="center"/>
+			<container orientation="vertical" w="240" h="wrap_content" float="center">
+				<space h="10"/>
+				<container id="g1" orientation="horizonal" w="100%" h="30">
+					<container id="g2" orientation="vertical" position="absolute" x="0" w="30">
+						<view class="BeeUIActivityIndicatorView" id="ind" style="ind" position="absolute" x="0" y="0" w="24" h="24" float="center" v-float="center"></view>
+						<view class="BeeUIImageView" id="arrow" style="arrow" position="absolute" x="0" y="0" w="30" h="30" float="center" v-float="center"></view>
+					</container>
+					<container id="g3" orientation="vertical" w="">
+						<view class="BeeUILabel" id="state" style="state" h="50%"></view>
+						<view class="BeeUILabel" id="date" style="date" h="50%"></view>
+					</container>
+				</container>
+				<space h="6"/>
+			</container>
+		</container>
+	</layout>
+
+	<style id="logo">
+		image:	'logo.png';
+		mode:	'fit';
+	</style>
+
+	<style id="arrow">
+		image:	'grayArrow.png';
+		mode:	'fit';
+	</style>
+
+	<style id="ind">
+		style:  'gray';
+	</style>
+
+	<style id="state">
+		{"text":"", "textColor":"#666", "font":"13, bold", "textAlignment":"center"}
+	</style>
+
+	<style id="date">
+		{"text":"", "textColor":"#666", "font":"13, bold", "textAlignment":"center"}
+	</style>
+
+</ui>
