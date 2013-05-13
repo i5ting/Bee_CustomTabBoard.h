@@ -108,7 +108,7 @@ DEF_SINGLETON( no320_bee_tab_board )
 	}
 	else if ( [signal is:BeeUIBoard.LAYOUT_VIEWS] )
 	{
-        _tabBar.frame = CGRectMake( 0, self.viewBound.size.height - 49, self.viewBound.size.width, 49 );
+        _tabBar.frame = CGRectMake( 0, self.viewBound.size.height - 45, self.viewBound.size.width, 45 );
         _mainStackGroup.view.frame = CGRectMake( 0, 0, self.viewBound.size.width, self.viewBound.size.height - _tabBar.frame.size.height );
 	}
     else if ( [signal is:BeeUIBoard.LOAD_DATAS] )
