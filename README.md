@@ -58,6 +58,10 @@ self.window.rootViewController = [[BeeCustomTabBoard alloc] initWithBundleName:@
 ```
 
 
+info.plist 里
+
+Status bar is initially hidden = NO
+
 ## 欢迎fork和反馈
 
 在issue提问或邮件shiren1118@126.com
